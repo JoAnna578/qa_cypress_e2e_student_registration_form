@@ -44,16 +44,41 @@ describe('Student Registration page', () => {
     // Wysyłka formularza
     cy.get('#submit').click();
 
-    // Weryfikacja danych w modalu
-    cy.get('.modal-content').should('be.visible');
-    cy.get('td').contains('Joanna Koloczek');
-    cy.get('td').contains('joanna.koloczek@example.com');
-    cy.get('td').contains('Female');
-    cy.get('td').contains('1234567890');
-    cy.get('td').contains('15 May,1995');
-    cy.get('td').contains('Maths');
-    cy.get('td').contains('Sports, Reading');
-    cy.get('td').contains('Kraków, ul. Długa 12');
-    cy.get('td').contains('Haryana Karnal');
+    // ✅ Dokładne asercje w modalu
+    cy.contains('td', 'Student Name')
+      .next('td')
+      .should('have.text', 'Joanna Koloczek');
+
+    cy.contains('td', 'Student Email')
+      .next('td')
+      .should('have.text', 'joanna.koloczek@example.com');
+
+    cy.contains('td', 'Gender')
+      .next('td')
+      .should('have.text', 'Female');
+
+    cy.contains('td', 'Mobile')
+      .next('td')
+      .should('have.text', '1234567890');
+
+    cy.contains('td', 'Date of Birth')
+      .next('td')
+      .should('have.text', '15 May,1995');
+
+    cy.contains('td', 'Subjects')
+      .next('td')
+      .should('have.text', 'Maths');
+
+    cy.contains('td', 'Hobbies')
+      .next('td')
+      .should('have.text', 'Sports, Reading');
+
+    cy.contains('td', 'Address')
+      .next('td')
+      .should('have.text', 'Kraków, ul. Długa 12');
+
+    cy.contains('td', 'State and City')
+      .next('td')
+      .should('have.text', 'Haryana Karnal');
   });
 });
